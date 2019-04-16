@@ -1,60 +1,73 @@
 import React, { Component, Fragment } from "react";
-import Navbar from "./navbar";
+import { connect } from "react-redux";
+import { loadMovies } from "../actions";
 import Pagination from "react-js-pagination";
+import "../utils/myCss.css";
 
-const getPopularMovies =
-  "https://api.themoviedb.org/3/movie/popular?page=1&language=en-US&api_key=";
-const getGenres =
-  "https://api.themoviedb.org/3/genre/movie/list?language=en-US&api_key=";
-const myKey = "06aa50e38281dd9b38543df33f8bab2c";
+// const getPopularMovies =
+//   "https://api.themoviedb.org/3/movie/popular?page=1&language=en-US&api_key=06aa50e38281dd9b38543df33f8bab2c";
+// const getGenres =
+//   "https://api.themoviedb.org/3/genre/movie/list?language=en-US&api_key=";
+// const myKey = "06aa50e38281dd9b38543df33f8bab2c";
 const imgUrl = "https://image.tmdb.org/t/p/w500";
 
 class MainPage extends Component {
-  state = {
-    movies: [],
-    genres: [],
-    currentPage: 1,
-    pageSize: 20,
-    totalPages: 0
-  };
+  //   state = {
+  //     movies: [],
+  //     genres: [],
+  //     currentPage: 1,
+  //     pageSize: 20,
+  //     totalPages: 0
+  //   };
+
+  //   componentDidMount() {
+  //     this.loadMovieList(this.state.currentPage);
+  //   }
+
+  //   idToname = (generas, secondArr) => {
+  //     let genNames = [];
+  //     generas.forEach(el1 =>
+  //       secondArr.forEach(el2 => {
+  //         if (el1.id === el2) {
+  //           genNames.push(" " + el1.name);
+  //         }
+  //       })
+  //     );
+
+  //     return genNames;
+  //   };
+
+  //   handlePageChange = page => {
+  //     console.log(this.state.currentPage);
+  //     this.setState({
+  //       currentPage: page
+  //     });
+  //   };
+
+  //   loadMovieList = page => {
+  //     let dataLink =
+  //       "https://api.themoviedb.org/3/movie/popular?page=" +
+  //       page +
+  //       "&language=en-US&api_key=06aa50e38281dd9b38543df33f8bab2c";
+  //     fetch(dataLink)
+  //       .then(response => response.json())
+  //       .then(data =>
+  //         this.setState({ movies: data.results, totalPages: data.total_results })
+  //       );
+
+  //     fetch(getGenres + myKey)
+  //       .then(response => response.json())
+  //       .then(data => this.setState({ genres: data.genres }));
+  //   };
 
   componentDidMount() {
-    fetch(getPopularMovies + myKey)
-      .then(response => response.json())
-      .then(data =>
-        this.setState({ movies: data.results, totalPages: data.total_pages })
-      );
-
-    fetch(getGenres + myKey)
-      .then(response => response.json())
-      .then(data => this.setState({ genres: data.genres }));
+    this.props.loadMovies(1);
   }
 
-  idToname = (generas, secondArr) => {
-    let genNames = [];
-    generas.forEach(el1 =>
-      secondArr.forEach(el2 => {
-        if (el1.id === el2) {
-          genNames.push(" " + el1.name);
-        }
-      })
-    );
-
-    return genNames;
-  };
-
-  handlePageChange = page => {
-    console.log(page);
-    this.setState({
-      currentPage: page
-    });
-  };
-
   render() {
-    const { movies, genres } = this.state;
+    const { movies, currentpage, loadMovies } = this.props;
     return (
       <Fragment>
-        <Navbar />
         <div style={{ marginTop: "60px" }} className="container">
           <div className="row">
             {movies.map(res => (
@@ -72,7 +85,7 @@ class MainPage extends Component {
                     <div className="card-footer">
                       <small className="text-muted">
                         Release date : {res.release_date} <br />
-                        Genres :{this.idToname(genres, res.genre_ids)}
+                        {/* Genres :{this.idToname(genres, res.genre_ids)} */}
                       </small>
                     </div>
                   </div>
@@ -80,22 +93,37 @@ class MainPage extends Component {
               </div>
             ))}
           </div>
-          <div>
-            <Pagination
-              activePage={this.state.currentPage}
-              itemsCountPerPage={2}
-              totalItemsCount={20}
-              pageRangeDisplayed={5}
-              onChange={this.handlePageChange}
-              innerClass={"pagination"}
-              itemClass={"page-item"}
-              linkClass={"page-link"}
-            />
-          </div>
         </div>
+        {/* <button onClick={this.props.loadMovies}>Click</button> */}
+        <Pagination
+          hideDisabled
+          activePage={currentpage}
+          itemsCountPerPage={20}
+          totalItemsCount={19720}
+          pageRangeDisplayed={5}
+          innerClass={"pagination"}
+          itemClass={"page-item"}
+          linkClass={"page-link"}
+          onChange={loadMovies}
+        />
       </Fragment>
     );
   }
 }
 
-export default MainPage;
+const mapStateToProps = ({ loading, movies, error, currentpage, genres }) => ({
+  currentpage,
+  loading,
+  movies,
+  genres,
+  error
+});
+
+const mapDispatchToProps = dispatch => ({
+  loadMovies: page => dispatch(loadMovies(page))
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(MainPage);
