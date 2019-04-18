@@ -13,6 +13,7 @@ body {
   margin-bottom: 5px;
   height: 35px;
   overflow: hidden;
+  text-align: center;
   padding: 0 !important;
 }
 .card-footer {

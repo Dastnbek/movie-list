@@ -30,17 +30,19 @@ class MainPage extends Component {
       <Fragment>
         <Navbar />
         <MovieContainer genres={genres} movies={movieTodisplay} />
-        <Pagination
-          hideDisabled
-          activePage={currentpage}
-          itemsCountPerPage={20}
-          totalItemsCount={19720}
-          pageRangeDisplayed={5}
-          innerClass={"pagination"}
-          itemClass={"page-item"}
-          linkClass={"page-link"}
-          onChange={loadMovies}
-        />
+        {searchmovies.length === 0 && (
+          <Pagination
+            hideDisabled
+            activePage={currentpage}
+            itemsCountPerPage={20}
+            totalItemsCount={19720}
+            pageRangeDisplayed={5}
+            innerClass={"pagination"}
+            itemClass={"page-item"}
+            linkClass={"page-link"}
+            onChange={loadMovies}
+          />
+        )}
       </Fragment>
     );
   }
