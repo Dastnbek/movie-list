@@ -9,7 +9,7 @@ class MovieDetail extends Component {
     this.props.loadRecMovies(this.props.location.query.id);
   }
   render() {
-    const { location, recmovies } = this.props;
+    const { location, recmovies, genres } = this.props;
     const movieInfo = location.query;
 
     const imgUrl = "https://image.tmdb.org/t/p/w300";
@@ -20,7 +20,7 @@ class MovieDetail extends Component {
           <div className="col-3">
             <img src={imgPath} style={{ width: "100%" }} alt="" />
           </div>
-          <div className="col-9">
+          <div className="col-9" style={{ color: "white" }}>
             <h1 style={{ width: "100%" }}>{movieInfo.title}</h1>
             <p>{movieInfo.desc}</p>
           </div>
@@ -37,7 +37,7 @@ class MovieDetail extends Component {
                   pathname: `/main-page`
                 }}
               >
-                <MovieCard res={res} />
+                <MovieCard genres={genres} res={res} />
               </Link>
             </div>
           ))}
@@ -47,8 +47,9 @@ class MovieDetail extends Component {
   }
 }
 
-const mapStateToProps = ({ movieid, recmovies }) => ({
+const mapStateToProps = ({ movieid, recmovies, genres }) => ({
   movieid,
+  genres,
   recmovies
 });
 const mapDispatchToProps = dispatch => ({

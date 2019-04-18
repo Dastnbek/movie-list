@@ -1,7 +1,20 @@
 import React from "react";
+const numberTogenre = (generas, secondArr) => {
+  let genNames = [];
+  generas.forEach(el1 =>
+    secondArr.forEach(el2 => {
+      if (el1.id === el2) {
+        genNames.push(" " + el1.name);
+      }
+    })
+  );
+
+  return genNames;
+};
 const MovieCard = props => {
   const imgUrl = "https://image.tmdb.org/t/p/w500";
-  const { res } = props;
+  const { res, genres } = props;
+
   return (
     <div className="card-deck ">
       <div className="card ">
@@ -15,8 +28,7 @@ const MovieCard = props => {
         </div>
         <div className="card-footer">
           <small className="text-muted">
-            Release date : {res.release_date} <br />
-            {/* Genres :{this.idToname(genres, res.genre_ids)} */}
+            {numberTogenre(genres, res.genre_ids)}
           </small>
         </div>
       </div>

@@ -28,9 +28,13 @@ const setSearchMovies = movies => ({
   type: MOVIES.SEARCH_SUCCESS,
   movies
 });
+const loadGenre = temp => ({
+  type: MOVIES.GENRE_LOAD,
+  value: temp
+});
 
 const setGenres = genres => ({
-  type: MOVIES.GENRE + "_ASYNC",
+  type: MOVIES.GENRE_SUCCESS + "_ASYNC",
   genres
 });
 
@@ -46,6 +50,7 @@ export {
   setRecMovies,
   setQuerySearch,
   setSearchMovies,
+  loadGenre,
   setGenres,
   setError
 };

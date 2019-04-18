@@ -4,10 +4,10 @@ import { Link } from "react-router-dom";
 import { loadRecMovies } from "../actions";
 
 const MovieContainer = props => {
-  const { movies } = props;
+  const { movies, genres } = props;
 
   return (
-    <div style={{ marginTop: "60px" }} className="container">
+    <div className="container myContainer">
       <div className="row">
         {movies.map(res => (
           <div
@@ -27,7 +27,7 @@ const MovieContainer = props => {
                 }
               }}
             >
-              <MovieCard res={res} />
+              <MovieCard genres={genres} res={res} />
             </Link>
           </div>
         ))}

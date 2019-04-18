@@ -6,7 +6,6 @@ import { MOVIES } from "../constants";
 function* handleGenreLoad() {
   try {
     const genres = yield call(fetchGenre);
-    console.log(genres);
     yield put(setGenres(genres));
   } catch (e) {
     //dispatch error
@@ -15,5 +14,5 @@ function* handleGenreLoad() {
 }
 
 export default function* watchGenreLoad() {
-  yield takeEvery(MOVIES.GENRE, handleGenreLoad);
+  yield takeEvery(MOVIES.GENRE_LOAD, handleGenreLoad);
 }

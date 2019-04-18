@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { setQuerySearch } from "../actions";
 import { connect } from "react-redux";
+import logo from "../utils/logo.png";
 
 let temp = "";
 class Navbar extends Component {
@@ -15,8 +16,12 @@ class Navbar extends Component {
   render() {
     return (
       <div className="container">
-        <nav className="navbar fixed-top navbar-expand-lg navbar-light bg-primary">
-          <div className="col" />
+        <nav className="navbar fixed-top navbar-expand-lg navbar-light myNav">
+          <div className="col">
+            <div className="navbar-brand" href="#">
+              <img style={{ width: "100px" }} src={logo} alt="" />
+            </div>
+          </div>
           <div className="col-6">
             <form onSubmit={this.handleSubmit} className="form-inline">
               <input

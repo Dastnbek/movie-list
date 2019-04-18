@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
-import { loadMovies, setGenres, loadRecMovies } from "../actions";
+import { loadMovies, loadRecMovies, loadGenre } from "../actions";
 import Pagination from "react-js-pagination";
 import Navbar from "./navbar";
 import MovieContainer from "./movie-container";
@@ -9,12 +9,18 @@ import "../utils/myCss.css";
 class MainPage extends Component {
   componentDidMount() {
     this.props.loadMovies(1);
-    this.props.setGenres();
+    this.props.loadGenre(1);
   }
 
   render() {
     let movieTodisplay = [];
-    const { movies, currentpage, loadMovies, searchmovies } = this.props;
+    const {
+      movies,
+      currentpage,
+      genres,
+      loadMovies,
+      searchmovies
+    } = this.props;
     if (searchmovies.length === 0) {
       movieTodisplay = movies;
     } else {
@@ -23,7 +29,7 @@ class MainPage extends Component {
     return (
       <Fragment>
         <Navbar />
-        <MovieContainer movies={movieTodisplay} />
+        <MovieContainer genres={genres} movies={movieTodisplay} />
         <Pagination
           hideDisabled
           activePage={currentpage}
@@ -59,7 +65,7 @@ const mapStateToProps = ({
 const mapDispatchToProps = dispatch => ({
   loadMovies: page => dispatch(loadMovies(page)),
   loadRecMovies: id => dispatch(loadRecMovies(id)),
-  setGenres: () => dispatch(setGenres())
+  loadGenre: value => dispatch(loadGenre(value))
 });
 
 export default connect(

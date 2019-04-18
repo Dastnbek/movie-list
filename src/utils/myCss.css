@@ -1,7 +1,37 @@
+body {
+  background: rgb(30, 30, 30) !important;
+}
+.card {
+  margin-top: 10px;
+}
+.card-title {
+  font-size: 15px;
+  margin-bottom: 0px !important;
+}
+.card-body {
+  margin-top: 5px;
+  margin-bottom: 5px;
+  height: 35px;
+  overflow: hidden;
+  padding: 0 !important;
+}
+.card-footer {
+  font-size: 14px;
+  padding: 2px !important;
+}
+.myContainer {
+  margin-top: 100px;
+}
 .pagination {
   margin-top: 15px;
   justify-content: center;
 }
 .myCard :hover {
   box-shadow: 5px 5px 5px 5px rebeccapurple;
+}
+.myNav {
+  background: rgb(44, 46, 54);
+  padding-top: 15px !important;
+  padding-bottom: 15px !important;
+  box-shadow: rgb(17, 17, 17) 0px 0px 15px;
 }
