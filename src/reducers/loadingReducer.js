@@ -3,6 +3,8 @@ const loadingReducer = (state = false, action) => {
   switch (action.type) {
     case MOVIES.LOAD:
       return true;
+    case MOVIES.REC_LOAD:
+      return true;
     case MOVIES.LOAD_SUCCESS:
       return false;
     case MOVIES.LOAD_FAIL:

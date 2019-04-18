@@ -1,15 +1,15 @@
-import movieSaga from "./movieSaga";
-// import { takeEvery } from "redux-saga/effects";
-// import { MOVIES } from "../constants";
-// //worker saga
-// function* handleMovieLoad() {
-//   console.log("worker saga");
-//   yield;
-// }
+import watchMovieLoad from "./movieSaga";
+import watchRecMovieLoad from "./recMovieSaga";
+import watchGenreLoad from "./genreSaga";
+import watchSearchQuery from "./searchSaga";
+import { all, fork } from "redux-saga/effects";
+function* rootSaga() {
+  yield all([
+    fork(watchMovieLoad),
+    fork(watchGenreLoad),
+    fork(watchRecMovieLoad),
+    fork(watchSearchQuery)
+  ]);
+}
 
-// //watcher saga
-// function* rootSaga() {
-//   yield takeEvery(MOVIES.LOAD, handleMovieLoad);
-// }
-
-export default movieSaga;
+export default rootSaga;

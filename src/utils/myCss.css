@@ -2,3 +2,6 @@
   margin-top: 15px;
   justify-content: center;
 }
+.myCard :hover {
+  box-shadow: 5px 5px 5px 5px rebeccapurple;
+}
