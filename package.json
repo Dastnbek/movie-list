@@ -5,7 +5,6 @@
   "dependencies": {
     "bootstrap": "^4.1.1",
     "bootstrap-less": "^3.3.8",
-    "homepage": "http://dastnbek.github.io/movie-list",
     "jquery": "^3.4.0",
     "react": "^16.8.6",
     "react-bootstrap": "^1.0.0-beta.8",
@@ -21,9 +20,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
+    "eject": "react-scripts eject"
   },
   "eslintConfig": {
     "extends": "react-app"
