@@ -8,7 +8,6 @@ const getId = state => state.movieid;
 function* handleRecMovieLoad() {
   try {
     const id = yield select(getId);
-    console.log(id);
     const movies = yield call(fetchRecMovies, id);
     yield put(setRecMovies(movies));
   } catch (e) {

@@ -15,7 +15,7 @@ class MovieDetail extends Component {
 
     const imgUrl = "https://image.tmdb.org/t/p/w300";
     const imgPath = imgUrl + movieInfo.path;
-    console.log(movieInfo);
+
     return (
       <div className="container" style={{ marginTop: "30px" }}>
         <div className="row">
