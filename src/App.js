@@ -17,9 +17,6 @@ class App extends Component {
           <Redirect from="/" exact to="/main-page" />
           <Redirect to="/not-found" />
         </Switch>
-
-        {/* <Navbar /> */}
-        {/* <MainPage /> */}
       </div>
     );
   }

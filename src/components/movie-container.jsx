@@ -5,7 +5,6 @@ import { loadRecMovies } from "../actions";
 
 const MovieContainer = props => {
   const { movies, genres } = props;
-  console.log(movies);
   return (
     <div className="container myContainer">
       <div className="row">

@@ -12,6 +12,7 @@ class Navbar extends Component {
   handleSubmit = e => {
     e.preventDefault();
     this.props.setQuerySearch(temp);
+    this.props.loadSearchPage(1);
   };
   render() {
     return (

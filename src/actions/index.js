@@ -24,6 +24,7 @@ const setQuerySearch = query => ({
   type: MOVIES.SEARCH_LOAD,
   value: query
 });
+
 const setSearchMovies = movies => ({
   type: MOVIES.SEARCH_SUCCESS,
   movies
