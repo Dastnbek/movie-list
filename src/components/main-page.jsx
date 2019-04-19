@@ -19,6 +19,7 @@ class MainPage extends Component {
       currentpage,
       genres,
       loadMovies,
+      totalresults,
       searchmovies
     } = this.props;
     if (searchmovies.length === 0) {
@@ -30,19 +31,19 @@ class MainPage extends Component {
       <Fragment>
         <Navbar />
         <MovieContainer genres={genres} movies={movieTodisplay} />
-        {/* {searchmovies.length === 0 && ( */}
-        <Pagination
-          hideDisabled
-          activePage={currentpage}
-          itemsCountPerPage={20}
-          totalItemsCount={19720}
-          pageRangeDisplayed={5}
-          innerClass={"pagination"}
-          itemClass={"page-item"}
-          linkClass={"page-link"}
-          onChange={loadMovies}
-        />
-        {/* )} */}
+        {searchmovies.length === 0 && (
+          <Pagination
+            hideDisabled
+            activePage={currentpage}
+            itemsCountPerPage={20}
+            totalItemsCount={totalresults}
+            pageRangeDisplayed={5}
+            innerClass={"pagination"}
+            itemClass={"page-item"}
+            linkClass={"page-link"}
+            onChange={loadMovies}
+          />
+        )}
       </Fragment>
     );
   }
@@ -54,6 +55,7 @@ const mapStateToProps = ({
   error,
   currentpage,
   searchmovies,
+  totalresults,
   genres
 }) => ({
   currentpage,
@@ -61,6 +63,7 @@ const mapStateToProps = ({
   movies,
   genres,
   searchmovies,
+  totalresults,
   error
 });
 

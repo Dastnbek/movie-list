@@ -5,7 +5,7 @@ import { loadRecMovies } from "../actions";
 
 const MovieContainer = props => {
   const { movies, genres } = props;
-
+  console.log(movies);
   return (
     <div className="container myContainer">
       <div className="row">
@@ -23,7 +23,8 @@ const MovieContainer = props => {
                   title: res.original_title,
                   path: res.poster_path,
                   backpath: res.backdrop_path,
-                  desc: res.overview
+                  desc: res.overview,
+                  rating: res.vote_average
                 }
               }}
             >

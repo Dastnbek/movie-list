@@ -8,6 +8,7 @@ import recomendReducer from "./recomendReducer";
 import idReducer from "./idReducer";
 import queryReducer from "./queryReducer";
 import searchReducer from "./searchReducer";
+import countReducer from "./countReducer";
 
 const rootReducer = combineReducers({
   loading: loadingReducer,
@@ -18,7 +19,8 @@ const rootReducer = combineReducers({
   currentpage: pageReducer,
   recmovies: recomendReducer,
   searchquery: queryReducer,
-  searchmovies: searchReducer
+  searchmovies: searchReducer,
+  totalresults: countReducer
 });
 
 export default rootReducer;

@@ -9,6 +9,7 @@ function* handleMovieLoad() {
   try {
     const page = yield select(getPage);
     const movies = yield call(fetchMovies, page);
+    console.log(movies);
     yield put(setMovies(movies));
   } catch (e) {
     yield put(setError(e.toString()));

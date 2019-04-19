@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { loadRecMovies } from "../actions";
 import { Link } from "react-router-dom";
+import StarRatings from "react-star-ratings";
 import MovieCard from "./movie-card";
 
 class MovieDetail extends Component {
@@ -14,6 +15,7 @@ class MovieDetail extends Component {
 
     const imgUrl = "https://image.tmdb.org/t/p/w300";
     const imgPath = imgUrl + movieInfo.path;
+    console.log(movieInfo);
     return (
       <div className="container" style={{ marginTop: "30px" }}>
         <div className="row">
@@ -23,6 +25,13 @@ class MovieDetail extends Component {
           <div className="col-9" style={{ color: "white" }}>
             <h1 style={{ width: "100%" }}>{movieInfo.title}</h1>
             <p>{movieInfo.desc}</p>
+            <div>
+              <StarRatings
+                rating={movieInfo.rating / 2}
+                starRatedColor="#FFD700"
+                numberOfStars={5}
+              />
+            </div>
           </div>
         </div>
         <div className="row">
