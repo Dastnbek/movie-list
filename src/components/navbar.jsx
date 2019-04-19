@@ -6,13 +6,11 @@ import logo from "../utils/logo.png";
 let temp = "";
 class Navbar extends Component {
   handleChange = e => {
-    console.log(e.target.value);
     temp = e.target.value;
   };
   handleSubmit = e => {
     e.preventDefault();
     this.props.setQuerySearch(temp);
-    this.props.loadSearchPage(1);
   };
   render() {
     return (
