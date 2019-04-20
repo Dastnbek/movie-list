@@ -1,36 +1,40 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { loadRecMovies } from "../actions";
+import { loadRecMovies, getaMovie } from "../actions";
 import { Link } from "react-router-dom";
 import StarRatings from "react-star-ratings";
 import MovieCard from "./movie-card";
 
 class MovieDetail extends Component {
   componentDidMount() {
-    this.props.loadRecMovies(this.props.location.query.id);
+    this.props.loadRecMovies(this.props.match.params.id);
+    this.props.getaMovie(this.props.match.params.id);
   }
+
   render() {
-    const { location, recmovies, genres } = this.props;
-    const movieInfo = location.query;
+    const { recmovies, genres, movieinfo } = this.props;
 
     const imgUrl = "https://image.tmdb.org/t/p/w300";
-    const imgPath = imgUrl + movieInfo.path;
-
+    const rating = movieinfo.vote_average / 2;
     return (
       <div className="container" style={{ marginTop: "30px" }}>
         <div className="row">
           <div className="col-3">
-            <img src={imgPath} style={{ width: "100%" }} alt="" />
+            <img
+              src={imgUrl + movieinfo.poster_path}
+              style={{ width: "100%" }}
+              alt=""
+            />
           </div>
           <div className="col-9" style={{ color: "white" }}>
-            <h1 style={{ width: "100%" }}>{movieInfo.title}</h1>
-            <p>{movieInfo.desc}</p>
+            <h1 style={{ width: "100%" }}>{movieinfo.original_title}</h1>
+            <p>{movieinfo.overview}</p>
             <div>
-              <StarRatings
-                rating={movieInfo.rating / 2}
+              {/* <StarRatings
+                rating={rating}
                 starRatedColor="#FFD700"
                 numberOfStars={5}
-              />
+              /> */}
             </div>
           </div>
         </div>
@@ -56,13 +60,15 @@ class MovieDetail extends Component {
   }
 }
 
-const mapStateToProps = ({ movieid, recmovies, genres }) => ({
+const mapStateToProps = ({ movieid, recmovies, genres, movieinfo }) => ({
   movieid,
   genres,
+  movieinfo,
   recmovies
 });
 const mapDispatchToProps = dispatch => ({
-  loadRecMovies: id => dispatch(loadRecMovies(id))
+  loadRecMovies: id => dispatch(loadRecMovies(id)),
+  getaMovie: id => dispatch(getaMovie(id))
 });
 export default connect(
   mapStateToProps,

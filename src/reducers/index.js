@@ -9,6 +9,7 @@ import idReducer from "./idReducer";
 import queryReducer from "./queryReducer";
 import searchReducer from "./searchReducer";
 import countReducer from "./countReducer";
+import singleReducer from "./singleReducer";
 
 const rootReducer = combineReducers({
   loading: loadingReducer,
@@ -17,6 +18,7 @@ const rootReducer = combineReducers({
   error: errorReducer,
   genres: genreReducer,
   currentpage: pageReducer,
+  movieinfo: singleReducer,
   recmovies: recomendReducer,
   searchquery: queryReducer,
   searchmovies: searchReducer,

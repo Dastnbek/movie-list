@@ -39,6 +39,15 @@ const setGenres = genres => ({
   genres
 });
 
+const getaMovie = id => ({
+  type: MOVIES.GETAMOVIE,
+  value: id
+});
+
+const setaMovie = movie => ({
+  type: MOVIES.SETAMOVIE,
+  movie
+});
 const setError = error => ({
   type: MOVIES.LOAD_FAIL,
   error
@@ -53,5 +62,7 @@ export {
   setSearchMovies,
   loadGenre,
   setGenres,
+  getaMovie,
+  setaMovie,
   setError
 };
