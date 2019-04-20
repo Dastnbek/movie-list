@@ -20,6 +20,9 @@ body {
   font-size: 14px;
   padding: 2px !important;
 }
+.text-muted {
+  font-weight: bolder;
+}
 .myContainer {
   margin-top: 100px;
 }
@@ -35,4 +38,14 @@ body {
   padding-top: 15px !important;
   padding-bottom: 15px !important;
   box-shadow: rgb(17, 17, 17) 0px 0px 15px;
+}
+.widget-svg {
+  width: 15px !important;
+}
+.star-container {
+  padding-right: 0px !important;
+  padding-left: 0px !important;
+}
+.movieInfo {
+  color: white;
 }
