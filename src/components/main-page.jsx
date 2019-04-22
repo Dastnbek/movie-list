@@ -1,15 +1,20 @@
 import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
-import { loadMovies, loadRecMovies, loadGenre } from "../actions";
 import Pagination from "react-js-pagination";
 import Navbar from "./navbar";
 import MovieContainer from "./movie-container";
 import "../utils/myCss.css";
+import {
+  loadMovies,
+  loadRecMovies,
+  loadGenre,
+  loadSearchMovies
+} from "../actions";
 
 class MainPage extends Component {
   componentDidMount() {
-    this.props.loadMovies(1);
-    this.props.loadGenre(1);
+    this.props.loadMovies(this.props.currentpage);
+    this.props.loadGenre();
   }
 
   render() {
@@ -27,23 +32,23 @@ class MainPage extends Component {
     } else {
       movieTodisplay = searchmovies;
     }
+
     return (
       <Fragment>
         <Navbar />
         <MovieContainer genres={genres} movies={movieTodisplay} />
-        {searchmovies.length === 0 && (
-          <Pagination
-            hideDisabled
-            activePage={currentpage}
-            itemsCountPerPage={20}
-            totalItemsCount={totalresults}
-            pageRangeDisplayed={5}
-            innerClass={"pagination"}
-            itemClass={"page-item"}
-            linkClass={"page-link"}
-            onChange={loadMovies}
-          />
-        )}
+
+        <Pagination
+          hideDisabled
+          activePage={currentpage}
+          itemsCountPerPage={20}
+          totalItemsCount={totalresults}
+          pageRangeDisplayed={5}
+          innerClass={"pagination"}
+          itemClass={"page-item"}
+          linkClass={"page-link"}
+          onChange={loadMovies}
+        />
       </Fragment>
     );
   }
@@ -70,7 +75,8 @@ const mapStateToProps = ({
 const mapDispatchToProps = dispatch => ({
   loadMovies: page => dispatch(loadMovies(page)),
   loadRecMovies: id => dispatch(loadRecMovies(id)),
-  loadGenre: value => dispatch(loadGenre(value))
+  loadGenre: () => dispatch(loadGenre()),
+  loadSearchMovies: id => dispatch(loadSearchMovies())
 });
 
 export default connect(

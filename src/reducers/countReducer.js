@@ -4,8 +4,8 @@ const countReducer = (state = [], action) => {
     action.type === MOVIES.LOAD_SUCCESS ||
     action.type === MOVIES.SEARCH_SUCCESS
   ) {
-    let temp = action.movies.total_results;
-    return temp;
+    let totalmovie = action.movies.total_results;
+    return totalmovie;
   }
   return state;
 };

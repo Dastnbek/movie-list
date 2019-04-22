@@ -16,15 +16,7 @@ const MovieContainer = props => {
           >
             <Link
               to={{
-                pathname: `/main-page/${res.id}`,
-                query: {
-                  id: res.id,
-                  title: res.original_title,
-                  path: res.poster_path,
-                  backpath: res.backdrop_path,
-                  desc: res.overview,
-                  rating: res.vote_average
-                }
+                pathname: `/main-page/${res.id}`
               }}
             >
               <MovieCard genres={genres} res={res} />

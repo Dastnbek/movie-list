@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { setQuerySearch } from "../actions";
+import { setQuerySearch, loadSearchMovies } from "../actions";
 import { connect } from "react-redux";
 import logo from "../utils/logo.png";
 
@@ -11,6 +11,7 @@ class Navbar extends Component {
   handleSubmit = e => {
     e.preventDefault();
     this.props.setQuerySearch(temp);
+    this.props.loadSearchMovies(1);
   };
   render() {
     return (
@@ -40,11 +41,13 @@ class Navbar extends Component {
   }
 }
 
-const mapStateToProps = ({ searchquery }) => ({
-  searchquery
+const mapStateToProps = ({ searchquery, searchpage }) => ({
+  searchquery,
+  searchpage
 });
 const mapDispatchToProps = dispatch => ({
-  setQuerySearch: query => dispatch(setQuerySearch(query))
+  setQuerySearch: query => dispatch(setQuerySearch(query)),
+  loadSearchMovies: id => dispatch(loadSearchMovies(id))
 });
 export default connect(
   mapStateToProps,

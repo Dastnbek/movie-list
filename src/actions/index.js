@@ -20,8 +20,12 @@ const setRecMovies = movies => ({
   movies
 });
 //search results
-const setQuerySearch = query => ({
+const loadSearchMovies = id => ({
   type: MOVIES.SEARCH_LOAD,
+  value: id
+});
+const setQuerySearch = query => ({
+  type: MOVIES.SEARCH_LOAD + "a",
   value: query
 });
 
@@ -29,16 +33,16 @@ const setSearchMovies = movies => ({
   type: MOVIES.SEARCH_SUCCESS,
   movies
 });
-const loadGenre = temp => ({
-  type: MOVIES.GENRE_LOAD,
-  value: temp
+// load genres
+const loadGenre = () => ({
+  type: MOVIES.GENRE_LOAD
 });
 
 const setGenres = genres => ({
   type: MOVIES.GENRE_SUCCESS + "_ASYNC",
   genres
 });
-
+// single movie info
 const getaMovie = id => ({
   type: MOVIES.GETAMOVIE,
   value: id
@@ -53,16 +57,22 @@ const setError = error => ({
   error
 });
 
+const clearState = () => ({
+  type: MOVIES.CLEAR
+});
+
 export {
   loadMovies,
   setMovies,
   loadRecMovies,
   setRecMovies,
+  loadSearchMovies,
   setQuerySearch,
   setSearchMovies,
   loadGenre,
   setGenres,
   getaMovie,
   setaMovie,
+  clearState,
   setError
 };

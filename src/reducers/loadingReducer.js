@@ -1,4 +1,5 @@
 import { MOVIES } from "../constants";
+
 const loadingReducer = (state = false, action) => {
   switch (action.type) {
     case MOVIES.LOAD:
