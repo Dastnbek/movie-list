@@ -4,6 +4,18 @@ import { loadRecMovies, getaMovie, clearState } from "../actions";
 import { Link } from "react-router-dom";
 import StarRatings from "react-star-ratings";
 import MovieCard from "./movie-card";
+import { css } from "@emotion/core";
+import GridLoader from "react-spinners/GridLoader";
+const override = css`
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 50%;
+  height: 30%;
+  margin: auto;
+`;
 
 class MovieDetail extends Component {
   componentWillReceiveProps(nextProps) {
@@ -70,7 +82,7 @@ class MovieDetail extends Component {
           </div>
         </div>
       );
-    } else return <h1 style={{ color: "white" }}>Loading</h1>;
+    } else return <GridLoader css={override} size={25} color={"white"} />;
   }
 }
 
