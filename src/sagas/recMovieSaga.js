@@ -1,17 +1,14 @@
-import { select, call, put, takeEvery } from "redux-saga/effects";
-import { fetchRecMovies } from "../api/getRecMovies.js";
-import { setRecMovies, setError } from "../actions";
+import { call, put, takeEvery } from "redux-saga/effects";
+import { fetchRecMovies } from "../api";
+import { setRecMovies } from "../actions";
 import { MOVIES } from "../constants";
 
-const getId = state => state.movieid;
-
-function* handleRecMovieLoad() {
+function* handleRecMovieLoad(payload) {
   try {
-    const id = yield select(getId);
-    const movies = yield call(fetchRecMovies, id);
+    const movies = yield call(fetchRecMovies, payload.value);
     yield put(setRecMovies(movies));
   } catch (e) {
-    yield put(setError(e.toString()));
+    // yield put(setError(e.toString()));
   }
 }
 

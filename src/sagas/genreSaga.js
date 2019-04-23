@@ -1,6 +1,6 @@
 import { call, put, takeEvery } from "redux-saga/effects";
-import { fetchGenre } from "../api/getGenre.js";
-import { setGenres, setError } from "../actions";
+import { fetchGenre } from "../api";
+import { setGenres } from "../actions";
 import { MOVIES } from "../constants";
 
 function* handleGenreLoad() {
@@ -9,7 +9,7 @@ function* handleGenreLoad() {
     yield put(setGenres(genres));
   } catch (e) {
     //dispatch error
-    yield put(setError(e.toString()));
+    //yield put(setError(e.toString()));
   }
 }
 

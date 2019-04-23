@@ -1,4 +1,5 @@
 import { combineReducers } from "redux";
+import { routerReducer } from "react-router-redux";
 import loadingReducer from "./loadingReducer";
 import movieReducer from "./movieReducer";
 import errorReducer from "./errorReducer";
@@ -22,7 +23,8 @@ const rootReducer = combineReducers({
   //recmovies: recomendReducer,
   searchquery: queryReducer,
   searchmovies: searchReducer,
-  totalresults: countReducer
+  totalresults: countReducer,
+  routing: routerReducer
 });
 
 export default rootReducer;

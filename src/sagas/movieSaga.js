@@ -1,17 +1,14 @@
-import { select, call, put, takeEvery } from "redux-saga/effects";
-import { fetchMovies } from "../api/getMovies.js";
-import { setMovies, setError } from "../actions";
+import { call, put, takeEvery } from "redux-saga/effects";
+import { fetchMovies } from "../api";
+import { setMovies, setErrorPopular } from "../actions";
 import { MOVIES } from "../constants";
 
-const getPage = state => state.currentpage;
-
-function* handleMovieLoad() {
+function* handleMovieLoad(payload) {
   try {
-    const page = yield select(getPage);
-    const movies = yield call(fetchMovies, page);
+    const movies = yield call(fetchMovies, payload.value);
     yield put(setMovies(movies));
   } catch (e) {
-    yield put(setError(e.toString()));
+    yield put(setErrorPopular(e.toString()));
   }
 }
 

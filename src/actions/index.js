@@ -52,8 +52,13 @@ const setaMovie = movie => ({
   type: MOVIES.SETAMOVIE,
   movie
 });
-const setError = error => ({
+const setErrorPopular = error => ({
   type: MOVIES.LOAD_FAIL,
+  error
+});
+
+const setErrorAmovie = error => ({
+  type: MOVIES.AMOVIE_FAIL,
   error
 });
 
@@ -74,5 +79,6 @@ export {
   getaMovie,
   setaMovie,
   clearState,
-  setError
+  setErrorPopular,
+  setErrorAmovie
 };

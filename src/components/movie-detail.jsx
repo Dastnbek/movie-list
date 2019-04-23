@@ -1,11 +1,11 @@
 import React, { Component } from "react";
-import { connect } from "react-redux";
-import { loadRecMovies, getaMovie, clearState } from "../actions";
-import { Link } from "react-router-dom";
-import StarRatings from "react-star-ratings";
-import MovieCard from "./movie-card";
-import { css } from "@emotion/core";
 import GridLoader from "react-spinners/GridLoader";
+import Recomended from "./related-movies";
+import Amovie from "./amovie-info";
+import { loadRecMovies, getaMovie, clearState } from "../actions";
+import { connect } from "react-redux";
+import { css } from "@emotion/core";
+
 const override = css`
   position: absolute;
   top: 0;
@@ -30,67 +30,25 @@ class MovieDetail extends Component {
   }
 
   render() {
+    window.scrollTo(null, null);
     if (this.props.movieinfo !== null) {
       const { movies, genres, movieinfo } = this.props;
-      const { vote_average: votes } = movieinfo;
-      const imgUrl = "https://image.tmdb.org/t/p/w300";
-      window.scrollTo(null, null);
       return (
         <div className="container" style={{ marginTop: "30px" }}>
-          <div className="row">
-            <div className="col-3">
-              <img
-                src={imgUrl + movieinfo.poster_path}
-                style={{ width: "100%" }}
-                alt=""
-              />
-            </div>
-            <div className="col-9 movieInfo">
-              <h1 style={{ width: "100%" }}>{movieinfo.original_title}</h1>
-              <p>{movieinfo.overview}</p>
-              <div>
-                Status : {movieinfo.status}
-                <br />
-                Realease date : {movieinfo.release_date}
-                <br />
-                Budget : {movieinfo.budget} $
-                <br />
-                Rating :{" "}
-                <StarRatings
-                  rating={votes}
-                  starRatedColor="#FFD700"
-                  numberOfStars={10}
-                />
-              </div>
-            </div>
-          </div>
-          <div style={{ margin: "10px 0 10px 0" }}>
-            <h3 style={{ color: "white" }}>Related movies</h3>
-          </div>
-          <div className="row">
-            {movies.map(res => (
-              <div key={res.id} className="col-2">
-                <Link
-                  to={{
-                    pathname: `/main-page/${res.id}`
-                  }}
-                >
-                  <MovieCard genres={genres} res={res} />
-                </Link>
-              </div>
-            ))}
-          </div>
+          <Amovie movieinfo={movieinfo} />
+          <Recomended movies={movies} genres={genres} />
         </div>
       );
     } else return <GridLoader css={override} size={25} color={"white"} />;
   }
 }
 
-const mapStateToProps = ({ movieid, movies, genres, movieinfo }) => ({
+const mapStateToProps = ({ movieid, error, movies, genres, movieinfo }) => ({
   movieid,
   genres,
   movieinfo,
-  movies
+  movies,
+  error
 });
 const mapDispatchToProps = dispatch => ({
   loadRecMovies: id => dispatch(loadRecMovies(id)),

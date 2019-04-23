@@ -12,6 +12,10 @@ const loadingReducer = (state = false, action) => {
       return false;
     case MOVIES.LOAD_FAIL:
       return false;
+    case MOVIES.SETAMOVIE:
+      return false;
+    case MOVIES.AMOVIE_FAIL:
+      return false;
     default:
       return state;
   }

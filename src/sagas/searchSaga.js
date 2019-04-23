@@ -1,6 +1,6 @@
 import { select, call, put, takeEvery } from "redux-saga/effects";
-import { fetchSearchMovies } from "../api/getSearchMovies";
-import { setSearchMovies, setError } from "../actions";
+import { fetchSearchMovies } from "../api";
+import { setSearchMovies } from "../actions";
 import { MOVIES } from "../constants";
 
 const getquery = state => state.searchquery;
@@ -14,7 +14,7 @@ function* handleSearchQuery() {
 
     yield put(setSearchMovies(movies));
   } catch (e) {
-    yield put(setError(e.toString()));
+    //yield put(setError(e.toString()));
   }
 }
 

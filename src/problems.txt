@@ -1,4 +1,2 @@
-clear state,
 not found page if random number entred,
 pagination in searched movies,
-display movie info from recomended movies
