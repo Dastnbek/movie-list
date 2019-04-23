@@ -31,6 +31,9 @@ class MovieDetail extends Component {
 
   render() {
     window.scrollTo(null, null);
+    if (this.props.error !== null) {
+      this.props.history.push("/not-found");
+    }
     if (this.props.movieinfo !== null) {
       const { movies, genres, movieinfo } = this.props;
       return (

@@ -1,2 +1,1 @@
-not found page if random number entred,
 pagination in searched movies,
